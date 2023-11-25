@@ -32,7 +32,7 @@ const Banner = () => {
             </Carousel>
             <div className="flex flex-col items-center justify-center">
                 <div className="flex flex-col justify-center items-center max-w-lg  relative -mt-[640px] space-y-4">
-                    <h1 className="text-cyan-200 text-5xl font-bold">Search & Discover</h1>
+                    <h1 className="text-cyan-200 text-center text-5xl font-bold">Search & Discover</h1>
                     <p className="text-white text-center">Explore a world of knowledge and diverse conversations. Enter keywords below to uncover discussions that match your interests.</p>
                     <div className="flex border-2 border-cyan-300 rounded-lg">
                         <div>
