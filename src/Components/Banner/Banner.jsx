@@ -7,7 +7,7 @@ import { AiOutlineSearch } from "react-icons/ai";
 const Banner = () => {
     return (
         <div >
-            <Carousel>
+            <Carousel showThumbs={false}>
                 <div className="hero w-full h-[640px] " style={{ backgroundImage: 'url(https://i.ibb.co/4gSDCxn/banner1.jpg)' }}>
                     <div className="hero-overlay bg-opacity-60"></div>
                     <div className="hero-content text-center text-neutral-content">

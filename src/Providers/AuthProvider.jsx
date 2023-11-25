@@ -4,7 +4,7 @@ import { GoogleAuthProvider, createUserWithEmailAndPassword, getAuth, onAuthStat
 
 export const AuthContext = createContext(null);
 const auth = getAuth(app)
-const AuthProvide = ({ children }) => {
+const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
 
@@ -75,4 +75,4 @@ const AuthProvide = ({ children }) => {
     );
 };
 
-export default AuthProvide;
+export default AuthProvider;
