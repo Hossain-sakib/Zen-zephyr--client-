@@ -1,6 +1,6 @@
 import { Link, NavLink } from "react-router-dom";
 import {
-    AiOutlineHome, AiOutlineCrown, AiOutlineNotification, AiOutlineLogout, AiOutlineUser
+    AiOutlineHome, AiOutlineCrown, AiOutlineNotification, AiOutlineLogout, AiOutlineUser, AiOutlineDashboard
 } from "react-icons/ai";
 import useAuth from "../../Hooks/useAuth";
 
@@ -31,7 +31,7 @@ const { signOutUser, user } = useAuth();
                         </ul>
                     </div>
 
-                    <Link to='/'><img className="btn btn-ghost" src="https://i.ibb.co/vB6mq30/zz2.png" alt="" /></Link>
+                    <Link to='/'><img className="btn btn-square btn-ghost w-16" src="https://i.ibb.co/vB6mq30/zz2.png" alt="" /></Link>
 
                 </div>
 
@@ -59,13 +59,20 @@ const { signOutUser, user } = useAuth();
                                 >
                                     <NavLink
                                         
-                                        className="px-4 py-2  rounded-lg flex justify-center items-center gap-2"
+                                        className="px-4 py-2  rounded-lg flex  font-semibold  items-center gap-2"
                                     >
                                         {user?.displayName}<AiOutlineUser className="text-xl"></AiOutlineUser>
                                     </NavLink>
+                                    <NavLink to='/dashboard'
+                                        
+                                        className="px-4 py-2  rounded-lg  font-semibold
+                                        hover:bg-base-100 hover:bg-opacity-10 hover:font-bold flex   items-center gap-2"
+                                    >
+                                        Dashboard<AiOutlineDashboard className="text-xl"></AiOutlineDashboard>
+                                    </NavLink>
                                     <div
                                         onClick={signOutUser}
-                                        className="cursor-pointer text-red-500 px-4 py-2  rounded-lg hover:bg-base-100 hover:bg-opacity-10 hover:font-bold flex justify-center items-center gap-2"
+                                        className="cursor-pointer text-red-500 px-4 py-2  rounded-lg font-semibold hover:bg-base-100 hover:bg-opacity-10 hover:font-bold flex  items-center gap-2"
                                     >
                                         Sign Out <AiOutlineLogout className="text-xl"></AiOutlineLogout>
                                     </div>
