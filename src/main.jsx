@@ -12,7 +12,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <AuthProvider>
       <HelmetProvider>
-        <div className='max-w-screen-xl mx-auto'>
+        <div className='max-w-screen-xl mx-auto bg-cyan-50'>
           <RouterProvider router={router} />
         </div>
       </HelmetProvider>

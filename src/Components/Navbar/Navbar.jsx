@@ -1,7 +1,8 @@
-import { Link } from "react-router-dom";
-import logoImg from '../../assets/zz2.png';
-import {  AiOutlineHome,AiOutlineCrown,AiOutlineNotification
+import { Link, NavLink } from "react-router-dom";
+import {
+    AiOutlineHome, AiOutlineCrown, AiOutlineNotification, AiOutlineLogout, AiOutlineUser
 } from "react-icons/ai";
+import useAuth from "../../Hooks/useAuth";
 
 const Navbar = () => {
 
@@ -10,8 +11,10 @@ const Navbar = () => {
             <li className="font-semibold text-lg"><Link to='/'><AiOutlineHome></AiOutlineHome>Home</Link></li>
             <li className="font-semibold text-lg"><Link to='/membership'><AiOutlineCrown></AiOutlineCrown>Membership</Link></li>
             <li className="font-semibold text-lg"><Link to='/notifications'><AiOutlineNotification></AiOutlineNotification>Notifications</Link></li>
-           
+
         </>
+
+const { signOutUser, user } = useAuth();
 
     return (
         <>
@@ -27,9 +30,9 @@ const Navbar = () => {
                             }
                         </ul>
                     </div>
-                  
-                       <Link to='/'><img className="btn btn-ghost"  src={logoImg} alt="" /></Link>
-                      
+
+                    <Link to='/'><img className="btn btn-ghost" src="https://i.ibb.co/vB6mq30/zz2.png" alt="" /></Link>
+
                 </div>
 
                 <div className="navbar-center hidden lg:flex">
@@ -40,7 +43,44 @@ const Navbar = () => {
                     </ul>
                 </div>
                 <div className="navbar-end">
-                    <a className="btn" >Button</a>
+                    <div>
+                        {user?.email ? (
+                            <div className="dropdown dropdown-end ">
+                                <label tabIndex={0} className="cursor-pointer">
+                                    <div className="avatar">
+                                        <div className="w-10 rounded-full overflow-hidden transition-all hover:scale-105  hover:shadow-2xl ">
+                                            <img src={user?.photoURL} alt={user.displayName} />
+                                        </div>
+                                    </div>
+                                </label>
+                                <div
+                                    tabIndex={0}
+                                    className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow  rounded-box w-52 bg-cyan-900 bg-opacity-80 space-y-2"
+                                >
+                                    <NavLink
+                                        
+                                        className="px-4 py-2  rounded-lg flex justify-center items-center gap-2"
+                                    >
+                                        {user?.displayName}<AiOutlineUser className="text-xl"></AiOutlineUser>
+                                    </NavLink>
+                                    <div
+                                        onClick={signOutUser}
+                                        className="cursor-pointer text-red-500 px-4 py-2  rounded-lg hover:bg-base-100 hover:bg-opacity-10 hover:font-bold flex justify-center items-center gap-2"
+                                    >
+                                        Sign Out <AiOutlineLogout className="text-xl"></AiOutlineLogout>
+                                    </div>
+                                </div>
+                            </div>
+                        ) : (
+                            <NavLink
+                                to="/signin"
+                               className="btn bg-cyan-300 hover:bg-cyan-400 font-bold"
+                            >
+                                Join Us
+                            </NavLink>
+                        )}
+                       
+                    </div>
                 </div>
             </div>
         </>
