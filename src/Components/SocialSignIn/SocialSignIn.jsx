@@ -2,16 +2,31 @@ import { AiFillGoogleCircle } from "react-icons/ai";
 import useAuth from "../../Hooks/useAuth";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import useAxiosPublic from "../../Hooks/useAxiosPublic";
 
 const SocialSignIn = () => {
     const {googleSignIn} = useAuth();
     const navigate = useNavigate();
+    const axiosPublic = useAxiosPublic();
 
 
     const handleGoogleSignIn = () =>{
         googleSignIn()
-        .then(res=>{
-            console.log(res);
+        .then(result=>{
+            console.log(result);
+            const badge = 'bronze'
+            const userInfo = {
+                email: result.user?.email,
+                name: result.user?.displayName,
+                userImage:result.user?.photoURL,
+                badge: badge
+
+            }
+            axiosPublic.post('/users',userInfo)
+            .then(res=>{
+                console.log(res.data);
+                navigate('/');
+            })
             Swal.fire({
                 title: "Successfully signed in",
                 showClass: {
