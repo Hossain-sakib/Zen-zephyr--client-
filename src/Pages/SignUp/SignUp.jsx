@@ -106,7 +106,7 @@ const SignUp = () => {
                     <img src="https://i.ibb.co/X802tCb/SignUp.jpg" alt="" />
                 </div>
                 <div className="card shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
-                    <form onSubmit={handleSignUp} className="card-body">
+                    <form onSubmit={handleSignUp} className="card-body bg-cyan-50">
                         <div className="form-control">
                             <label className="label">
                                 <span className="label-text font-semibold text-cyan-500">Name</span>
