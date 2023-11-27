@@ -2,6 +2,7 @@ import { AiOutlineBook, AiOutlineCrown, AiOutlineFileAdd, AiOutlineHome, AiOutli
 import { Link, NavLink
  } from "react-router-dom";
 
+
 const Sidebar = () => {
     return (
         <div className="menu w-64 min-h-screen bg-cyan-400">
@@ -11,7 +12,7 @@ const Sidebar = () => {
 
                 <ul className="menu p-4 space-y-4 text-xl font-semibold">
                     <li className="border-2">
-                        <NavLink to='/dashboard/profile'><AiOutlineUser></AiOutlineUser> Profile</NavLink>
+                        <NavLink to={`/dashboard/profile`}><AiOutlineUser></AiOutlineUser> Profile</NavLink>
                     </li>
                     <li className="border-2">
                         <NavLink to='/dashboard/addPost'><AiOutlineFileAdd></AiOutlineFileAdd> Add Post</NavLink>

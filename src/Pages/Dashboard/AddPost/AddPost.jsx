@@ -1,7 +1,12 @@
+import Swal from "sweetalert2";
 import useAuth from "../../../Hooks/useAuth";
+import useAxiosPublic from "../../../Hooks/useAxiosPublic";
+import { useNavigate } from "react-router-dom";
+
 
 const AddPost = () => {
-    
+    const axiosPublic = useAxiosPublic();
+    const navigate = useNavigate();
     const tags = ["art",
         "article",
         "artificial intelligence",
@@ -36,13 +41,39 @@ const AddPost = () => {
         "web development"];
     const { user } = useAuth();
 
-    const handlePost = e => {
+    const handlePost = async (e) => {
         e.preventDefault();
         const form = e.target;
         const title = form.title.value;
         const description = form.description.value;
         const tag = form.tag.value;
-        console.log(title, description, tag);
+        const currentDate = new Date(); 
+        const formattedDate = currentDate.toISOString(); 
+
+
+        const addPost = {
+            authorName:user.displayName,
+            authorImage: user.photoURL,
+            authorEmail: user.email,
+            title: title,
+            description: description,
+            tag: tag,
+            upVoteCount: 0,
+            downVoteCount:0,
+            createdAt: formattedDate
+        }
+        const addPostRes = await axiosPublic.post('/post',addPost);
+        console.log(addPostRes.data);
+        if(addPostRes.data.insertedId){
+            Swal.fire({
+                position: "top-end",
+                icon: "success",
+                title: "Posted successfully.",
+                showConfirmButton: false,
+                timer: 1000
+              });
+              navigate('/dashboard/myPost');
+        }
     }
 
     return (

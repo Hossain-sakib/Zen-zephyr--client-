@@ -63,7 +63,7 @@ const { signOutUser, user } = useAuth();
                                     >
                                         {user?.displayName}<AiOutlineUser className="text-xl"></AiOutlineUser>
                                     </NavLink>
-                                    <NavLink to='/dashboard'
+                                    <NavLink to={`/dashboard/profile`}
                                         
                                         className="px-4 py-2  rounded-lg  font-semibold
                                         hover:bg-base-100 hover:bg-opacity-10 hover:font-bold flex   items-center gap-2"

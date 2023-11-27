@@ -62,14 +62,14 @@ const SignUp = () => {
             const result = await signUpUser(email, password);
             const user = result.user;
             console.log(user);
-
-            await updateUser(name);
+            const photo = imgRes.data.data.display_url
+            await updateUser(name,photo);
 
             const badge = 'bronze';
             const userInfo = {
                 email: email,
                 name: name,
-                userImage: imgRes.data.data.display_url,
+                userImage: photo,
                 badge: badge
             };
 
