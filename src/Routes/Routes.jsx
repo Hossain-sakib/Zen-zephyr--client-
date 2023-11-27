@@ -9,6 +9,7 @@ import Dashboard from "../Layouts/Dashboard";
 import PrivateRoutes from "../Routes/PrivateRoutes"
 import AddPost from "../Pages/Dashboard/AddPost/AddPost";
 import MyProfile from "../Pages/Dashboard/MyProfile/MyProfile"
+import PostPage from "../Pages/PostPage/PostPage";
 
 
 
@@ -21,6 +22,11 @@ export const router = createBrowserRouter([
             {
                 path: "/",
                 element:<Home></Home>
+            },
+            {
+                path: "/post/:id",
+                element:<PostPage></PostPage>,
+                loader: ({params}) => fetch(`http://localhost:5000/post/${params.id}`) 
             },
         ]
     },
