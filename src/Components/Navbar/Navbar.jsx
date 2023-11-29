@@ -18,13 +18,13 @@ const { signOutUser, user } = useAuth();
 
     return (
         <>
-            <div className="navbar fixed z-10 bg-cyan-900 text-white bg-opacity-80  max-w-screen-xl mx-auto">
+            <div className="navbar fixed z-10 bg-cyan-600 text-white bg-opacity-80  max-w-screen-xl mx-auto">
                 <div className="navbar-start">
                     <div className="dropdown">
                         <label tabIndex={0} className="btn btn-ghost lg:hidden">
                             <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
                         </label>
-                        <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow  rounded-box w-52 bg-cyan-900 bg-opacity-80 space-y-2">
+                        <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow  rounded-box w-52 bg-cyan-600 bg-opacity-80 space-y-2">
                             {
                                 navLinks
                             }
@@ -55,7 +55,7 @@ const { signOutUser, user } = useAuth();
                                 </label>
                                 <div
                                     tabIndex={0}
-                                    className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow  rounded-box w-52 bg-cyan-900 bg-opacity-80 space-y-2"
+                                    className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow  rounded-box w-52 bg-cyan-600 bg-opacity-80 space-y-2"
                                 >
                                     <NavLink
                                         
@@ -72,7 +72,7 @@ const { signOutUser, user } = useAuth();
                                     </NavLink>
                                     <div
                                         onClick={signOutUser}
-                                        className="cursor-pointer text-red-500 px-4 py-2  rounded-lg font-semibold hover:bg-base-100 hover:bg-opacity-10 hover:font-bold flex  items-center gap-2"
+                                        className="cursor-pointer text-red-500 px-4 py-2  rounded-lg font-bold hover:bg-base-100 hover:bg-opacity-10 hover:font-extrabold flex  items-center gap-2"
                                     >
                                         Sign Out <AiOutlineLogout className="text-xl"></AiOutlineLogout>
                                     </div>

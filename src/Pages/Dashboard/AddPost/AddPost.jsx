@@ -58,11 +58,11 @@ const AddPost = () => {
             title: title,
             description: description,
             tag: tag,
-            upVoteCount: 0,
-            downVoteCount:0,
+            upVotes:[],
+            downVotes:[],
             createdAt: formattedDate
         }
-        const addPostRes = await axiosPublic.post('/post',addPost);
+        const addPostRes = await axiosPublic.post('/post', addPost);
         console.log(addPostRes.data);
         if(addPostRes.data.insertedId){
             Swal.fire({

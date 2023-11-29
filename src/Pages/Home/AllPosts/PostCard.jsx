@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 
 const PostCard = ({ post }) => {
-    const { authorName, authorImage, authorEmail, title, description, tag, upVoteCount, createdAt,downVoteCount,_id } = post;
+    const { authorName, authorImage, authorEmail, title, description, tag, upVotes, createdAt,downVotes,_id } = post;
     const formattedDate = new Date(createdAt).toLocaleString();
     return (
         <Link to={`/post/${_id}`}>
@@ -25,10 +25,10 @@ const PostCard = ({ post }) => {
                     </div>
                     <div className="bg-cyan-50 w-full flex justify-around ">
                         <div className="w-1/3 flex items-center border border-cyan-400 justify-center">
-                            <button className="flex items-center  gap-1 text-xs font-bold text-cyan-600 p-1">{upVoteCount}<AiOutlineArrowUp className="text-green-600 text-sm"></AiOutlineArrowUp>UpVote</button>
+                            <button className="flex items-center  gap-1 text-xs font-bold text-cyan-600 p-1">{upVotes?.length}<AiOutlineArrowUp className="text-green-600 text-sm"></AiOutlineArrowUp>UpVotes</button>
                         </div>
                         <div className="w-1/3 flex items-center border border-cyan-400 justify-center">
-                            <button className="flex items-center  gap-1 text-xs font-bold text-cyan-600 p-1">{downVoteCount}<AiOutlineArrowDown className="text-red-600 text-sm"></AiOutlineArrowDown>DownVote</button>
+                            <button className="flex items-center  gap-1 text-xs font-bold text-cyan-600 p-1">{downVotes?.length}<AiOutlineArrowDown className="text-red-600 text-sm"></AiOutlineArrowDown>DownVotes</button>
                         </div>
                         <div className="w-1/3 flex items-center border border-cyan-400 justify-center">
                             <button className="flex items-center  gap-1 text-xs font-bold text-cyan-600 p-1">0 <AiOutlineComment className="text-blue-600 text-sm"></AiOutlineComment> Comments</button>
