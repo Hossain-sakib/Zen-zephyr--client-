@@ -41,7 +41,7 @@ const Tags = () => {
             <div className="space-x-2 space-y-2">
                {
                 tags.map((tag,index)=>(
-                    <button key={index} className="btn btn-sm bg-cyan-800 text-cyan-50 hover:bg-cyan-500"><AiOutlineTag></AiOutlineTag>{tag}</button>
+                    <button key={index} className="btn btn-sm bg-cyan-800 text-cyan-50 hover:bg-cyan-500 overflow-hidden transition-all hover:scale-105  hover:shadow-2xl"><AiOutlineTag></AiOutlineTag>{tag}</button>
                 ))
                }
 

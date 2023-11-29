@@ -1,46 +1,57 @@
-import { AiOutlineSend } from "react-icons/ai";
-import useAuth from "../../../Hooks/useAuth";
+import { useQuery } from "@tanstack/react-query";
 import useAxiosPublic from "../../../Hooks/useAxiosPublic";
+import { useState } from "react";
 import PropTypes from 'prop-types';
 
-
-const Comments = ({post}) => {
-    const {user} = useAuth();
+const Comments = ({ postId }) => {
     const axiosPublic = useAxiosPublic();
+    const [showAllComments, setShowAllComments] = useState(false);
 
+    const { data: comments = [] } = useQuery({
+        queryKey: ['comments', postId],
+        queryFn: async () => {
+            const res = await axiosPublic.get(`/post/${postId}/comments`);
+            return res.data;
+        },
+    });
 
-    const handlePostComment = async(e)=>{
-        e.preventDefault();
-        const currentDate = new Date(); 
-        const formattedDate = currentDate.toISOString();
-        const form = e.target;
-        const newComment = form.comment.value;
-        
-        const addComment = {
-            postId : post._id,
-            commenterEmail : user?.email,
-            createdAt: formattedDate,
-            comment: newComment
-        }
-        console.log(addComment);
+    const formatDate = (dateString) => {
+        const options = {
+            year: "numeric",
+            month: "short",
+            day: "numeric",
+            hour: "2-digit",
+            minute: "2-digit",
+            hour12: true,
+        };
+        return new Date(dateString).toLocaleString("en-US", options);
+    };
 
-        const addCommentRes = await axiosPublic.post('/comment', addComment);
-        console.log(addCommentRes);
-    }
+    const displayedComments = showAllComments ? comments : comments.slice(0, 2);
+
     return (
-        <div className="flex items-center justify-center py-2">
-            <form onSubmit={handlePostComment} className="flex items-center">
-                <div className="form-control">
-                    <textarea type="text" name="comment" placeholder="Write a comment...." className="input-bordered textarea border-cyan-400" required ></textarea>
+        <div className="px-4">
+            <div className="overflow-hidden transition-all hover:scale-105  hover:shadow-2xl my-2 bg-cyan-300 bg-opacity-30 flex items-center justify-center rounded-lg">
+                <button onClick={() => setShowAllComments(!showAllComments)} className="text-center text-cyan-700 text-sm font-bold py-1">
+                    {showAllComments ? "Show Less" : "Show All"}
+                </button>
+            </div>
+            {displayedComments.map((comment) => (
+                <div key={comment._id}>
+                    <div className="flex items-center gap-2">
+                        <h1 className="text-cyan-700 font-bold">{comment.commenterName}</h1>
+                        <h1 className="text-cyan-500 text-xs">{formatDate(comment.createdAt)}</h1>
+                    </div>
+                    <p className="text-sm ">{comment.comment}</p>
+                    <div className="divider divider-info"></div>
                 </div>
-                <button type="submit" className="-ml-8"><AiOutlineSend className="text-cyan-400 text-2xl"></AiOutlineSend></button>
-            </form>
+            ))}
         </div>
     );
 };
 
 Comments.propTypes = {
-    post: PropTypes.object
-}
+    postId: PropTypes.string,
+  };
 
 export default Comments;

@@ -123,7 +123,7 @@ const AddPost = () => {
                             </select>
                         </div>
                         <div className="form-control mt-6">
-                            <button className="btn bg-cyan-300 hover:bg-cyan-400 font-bold">Post</button>
+                            <button className="btn bg-cyan-300 hover:bg-cyan-400 font-bold overflow-hidden transition-all hover:scale-105  hover:shadow-2xl">Post</button>
                         </div>
                     </form>
                 </div>

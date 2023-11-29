@@ -27,8 +27,8 @@ const MyProfile = () => {
                         <h1 className="text-4xl font-semibold text-cyan-600 ">{userData?.name}</h1>
                         {
                             userData?.badge === 'bronze' ?
-                                <div className="text-slate-500 text-2xl flex flex-col items-center text-center"><FaMedal></FaMedal><span className="text-xs font-light">Bronze</span></div> :
-                                <div ><FaMedal></FaMedal><span className="text-xs font-light">Gold</span></div>
+                                <div className="text-slate-500 text-2xl flex flex-col items-center text-center overflow-hidden transition-all hover:scale-105  hover:shadow-2xl"><FaMedal className="text-slate-500 "></FaMedal><span className="text-xs font-light">Bronze</span></div> :
+                                <div ><FaMedal className="text-amber-500"></FaMedal><span className="text-amber-500 text-2xl flex flex-col items-center text-center overflow-hidden transition-all hover:scale-105  hover:shadow-2xl">Gold</span></div>
                         }
                     </div>
                     <p className="font-light">{userData?.email}</p>

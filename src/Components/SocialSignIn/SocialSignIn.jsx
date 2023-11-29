@@ -55,7 +55,7 @@ const SocialSignIn = () => {
         <hr className="mx-8" />
         <p className="mt-4 text-center text-lg font-semibold">Or,<br />Continue with</p>
         <div className="py-4 flex items-center justify-center">
-            <button onClick={handleGoogleSignIn} className="btn btn-circle btn-outline font-bold text-cyan-500 text-2xl"><AiFillGoogleCircle className="text-cyan-500"></AiFillGoogleCircle></button>
+            <button onClick={handleGoogleSignIn} className="btn btn-circle btn-outline font-bold text-cyan-500 text-2xl overflow-hidden transition-all hover:scale-105  hover:shadow-2xl"><AiFillGoogleCircle className="text-cyan-500"></AiFillGoogleCircle></button>
         </div>
     </div>
     );
