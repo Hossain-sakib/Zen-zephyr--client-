@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 
 const PostCard = ({ post }) => {
-    const { authorName, authorImage, authorEmail, title, description, tag, upVotes, createdAt,downVotes,_id } = post;
+    const { authorImage, title, tag, upVotes, createdAt,downVotes,_id } = post;
     const formattedDate = new Date(createdAt).toLocaleString();
     return (
         <Link to={`/post/${_id}`}>

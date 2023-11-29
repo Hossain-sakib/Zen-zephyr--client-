@@ -23,7 +23,19 @@ const PostPage = () => {
                 console.log('User already upvoted this post');
             }
     };
-    console.log(postData);
+    const handleDownVote = async () => {    
+            const currentPost = await axiosPublic.get(`/post/${postData._id}`);
+            const currentDownVotes = currentPost.data.downVotes || [];
+            if (!currentDownVotes.includes(user.email)) {
+                const updatedPost = await axiosPublic.patch(`/post/${postData._id}`, {
+                    $push: { downVotes: user.email },
+                });
+                console.log('Updated Post:', updatedPost.data);
+            } else {
+                console.log('User already upvoted this post');
+            }
+    };
+
 
 
 
@@ -53,8 +65,8 @@ const PostPage = () => {
                         <div className="w-1/3 flex items-center border border-cyan-400 justify-center">
                             <button onClick={handleUpVote} className="flex items-center  gap-1 text-xs font-bold text-cyan-600 p-1">{ postData.upVotes.length}<AiOutlineArrowUp className="text-green-600 text-sm"></AiOutlineArrowUp>UpVote</button>
                         </div>
-                        <div className="w-1/3 flex items-center border border-cyan-400 justify-center">
-                            <button className="flex items-center  gap-1 text-xs font-bold text-cyan-600 p-1">do<AiOutlineArrowDown className="text-red-600 text-sm"></AiOutlineArrowDown>DownVote</button>
+                        <div onClick={handleDownVote} className="w-1/3 flex items-center border border-cyan-400 justify-center">
+                            <button className="flex items-center  gap-1 text-xs font-bold text-cyan-600 p-1">{ postData.downVotes.length}<AiOutlineArrowDown className="text-red-600 text-sm"></AiOutlineArrowDown>DownVote</button>
                         </div>
                         <div className="w-1/3 flex items-center border border-cyan-400 justify-center">
                             <button className="flex items-center  gap-1 text-xs font-bold text-cyan-600 p-1">do <AiOutlineComment className="text-blue-600 text-sm"></AiOutlineComment> Comments</button>
