@@ -1,12 +1,14 @@
 import { AiOutlineArrowDown, AiOutlineArrowUp, AiOutlineComment, AiOutlineShareAlt, AiOutlineTag } from "react-icons/ai";
 import { useLoaderData } from "react-router-dom";
-
 import useAuth from "../../Hooks/useAuth.jsx"
 import useAxiosPublic from "../../Hooks/useAxiosPublic.jsx";
+import { useState } from "react";
+import Comments from "./Comments/Comments.jsx";
 const PostPage = () => {
+    const [postData, setPostData] = useState(useLoaderData());
+    const [showComments, setShowComments] = useState(false);
     const { user } = useAuth();
     const axiosPublic = useAxiosPublic();
-    const postData = useLoaderData();
     const formattedDate = new Date(postData.createdAt).toLocaleString();
 
 
@@ -35,10 +37,12 @@ const PostPage = () => {
             });
             console.log('added upVote:', updatedPost.data);
         }
+        const updatedPostData = await axiosPublic.get(`/post/${postData._id}`);
+        setPostData(updatedPostData.data);
     };
 
 
-    
+
 
     const handleDownVote = async () => {
         const currentPost = await axiosPublic.get(`/post/${postData._id}`);
@@ -51,21 +55,33 @@ const PostPage = () => {
             });
             console.log('Removed DownVote:', updatedPost.data);
         }
-      else if (!currentDownVotes.includes(user?.email) && currentUpVotes.includes(user?.email)) {
+        else if (!currentDownVotes.includes(user?.email) && currentUpVotes.includes(user?.email)) {
             const updatedPost = await axiosPublic.patch(`/post/${postData._id}`, {
                 $pull: { upVotes: user?.email },
                 $push: { downVotes: user?.email },
             });
             console.log('Removed UpVote and added downvote:', updatedPost.data);
         }
-      else if (!currentDownVotes.includes(user?.email) && !currentUpVotes.includes(user?.email)) {
+        else if (!currentDownVotes.includes(user?.email) && !currentUpVotes.includes(user?.email)) {
             const updatedPost = await axiosPublic.patch(`/post/${postData._id}`, {
                 $push: { downVotes: user?.email },
             });
             console.log('added downvote:', updatedPost.data);
         }
-       
+        const updatedPostData = await axiosPublic.get(`/post/${postData._id}`);
+        setPostData(updatedPostData.data);
+
     };
+
+
+
+    const handleCommentClick = () => {
+        setShowComments(!showComments);
+      };
+    
+
+
+
 
 
 
@@ -73,7 +89,7 @@ const PostPage = () => {
 
     return (
         <div className="hero min-h-screen">
-            <div className="card  border-2 border-cyan-400 rounded-lg bg-cyan-100  ">
+            <div className=" border-2 border-cyan-400 rounded-lg bg-cyan-100 ">
                 <div className="">
                     <div className="p-4 space-y-4">
                         <div className="flex items-center gap-2">
@@ -126,13 +142,17 @@ const PostPage = () => {
                         </div>
 
 
-                        <div className="w-1/4 flex items-center border border-cyan-400 justify-center">
+                        <div  onClick={handleCommentClick} className="w-1/4 flex items-center border border-cyan-400 justify-center">
                             <button className="flex items-center  gap-1 text-xs font-bold text-cyan-600 p-1">do <AiOutlineComment className="text-blue-600 text-sm"></AiOutlineComment> </button>
                         </div>
+                        
                         <div className="w-1/4 flex items-center border border-cyan-400 justify-center">
                             <button className="flex items-center  gap-1 text-xs font-bold text-cyan-600 p-1">do<AiOutlineShareAlt className="text-blue-600 text-sm"></AiOutlineShareAlt></button>
                         </div>
                     </div>
+                    {
+                        showComments && <Comments post={postData}></Comments>
+                    }
                 </div>
             </div>
         </div>
