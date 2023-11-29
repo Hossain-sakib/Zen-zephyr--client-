@@ -1,5 +1,6 @@
 import { AiOutlineArrowDown, AiOutlineArrowUp, AiOutlineComment, AiOutlineTag, } from "react-icons/ai";
 import { Link } from "react-router-dom";
+import PropTypes from 'prop-types';
 
 
 const PostCard = ({ post }) => {
@@ -39,5 +40,9 @@ const PostCard = ({ post }) => {
         </Link>
     );
 };
+
+PostCard.propTypes = {
+    post: PropTypes.object
+}
 
 export default PostCard;

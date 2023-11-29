@@ -7,7 +7,7 @@ import AllPosts from "./AllPosts/AllPosts";
 
 const Home = () => {
     return (
-        <div>
+        <div className="mb-24">
             <Helmet>
                 <title>Zen Zephyr | Home</title>
             </Helmet>
