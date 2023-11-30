@@ -1,9 +1,11 @@
+import { Link } from "react-router-dom";
 
 
 const Error = () => {
     return (
-        <div>
-            
+        <div className="min-h-screen flex flex-col items-center justify-center space-y-8">
+            <img className="max-w-xs" src="https://i.ibb.co/prWRcw9/404.jpg" alt="" />
+            <Link to='/'><p className="text-4xl text-red-500 font-medium hover:underline hover:font-bold">Back to homepage</p></Link>
         </div>
     );
 };

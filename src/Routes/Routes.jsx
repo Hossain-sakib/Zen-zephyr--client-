@@ -17,6 +17,8 @@ import MakeAnnouncement from "../Pages/Dashboard/AdminDashboard/MakeAnnouncement
 import Notifications from "../Pages/Notifications/Notifications";
 import CommentList from "../Pages/Dashboard/CommentList/CommentList";
 import Reports from "../Pages/Dashboard/AdminDashboard/Reports";
+import Error from "../Pages/Error/Error";
+import AdminProfile from "../Pages/Dashboard/AdminDashboard/AdminProfile";
 
 
 
@@ -27,6 +29,7 @@ export const router = createBrowserRouter([
     {
         path: "/",
         element: <Main></Main>,
+        errorElement:<Error></Error>,
         children: [
             {
                 path: "/",
@@ -54,6 +57,7 @@ export const router = createBrowserRouter([
     {
         path:'/dashboard',
         element:<PrivateRoutes><Dashboard></Dashboard></PrivateRoutes>,
+        errorElement:<Error></Error>,
         children:[
             {
                 path:'profile',
@@ -78,6 +82,10 @@ export const router = createBrowserRouter([
             {
                 path:'manageUsers',
                 element:<AdminRoutes><ManageUsers></ManageUsers></AdminRoutes>
+            },
+            {
+                path:'adminProfile',
+                element:<AdminRoutes><AdminProfile></AdminProfile></AdminRoutes>
             },
             {
                 path:'makeAnnouncement',
