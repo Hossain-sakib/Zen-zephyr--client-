@@ -1,22 +1,22 @@
 import { useQuery } from "@tanstack/react-query";
-import useAxiosPublic from "../../../Hooks/useAxiosPublic";
+import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import Swal from "sweetalert2";
 import { MdOutlineAdminPanelSettings } from "react-icons/md"
 
 
 
 const ManageUsers = () => {
-    const axiosPublic = useAxiosPublic()
+    const axiosSecure = useAxiosSecure()
     const { data: users = [], refetch } = useQuery({
         queryKey: ['users'],
         queryFn: async () => {
-            const res = await axiosPublic.get('/users');
+            const res = await axiosSecure.get('/users');
             return res.data
         }
     });
 
     const handleMakeAdmin = user => {
-        axiosPublic.patch(`/users/admin/${user._id}`)
+        axiosSecure.patch(`/users/admin/${user._id}`)
             .then(res => {
                 console.log(res.data);
                 refetch();
@@ -55,7 +55,10 @@ const ManageUsers = () => {
                                     {
                                         user.role === 'admin' ?
                                             <div className="text-2xl text-cyan-600 rounded-lg">
+                                                <div className="flex flex-col items-center justify-center">
                                                 <MdOutlineAdminPanelSettings ></MdOutlineAdminPanelSettings>
+                                                <span className="text-xs">Admin</span>
+                                                </div>
                                             </div>
 
                                             :
@@ -63,7 +66,7 @@ const ManageUsers = () => {
 
                                     }
                                 </td>
-                                <td>Subscription</td>
+                                <td>{user.badge}</td>
                             </tr>)
                         }
                     </tbody>

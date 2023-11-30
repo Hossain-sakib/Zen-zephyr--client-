@@ -3,10 +3,12 @@ import useAuth from "../../../Hooks/useAuth";
 import useAxiosPublic from "../../../Hooks/useAxiosPublic";
 import PropTypes from 'prop-types';
 import { useQuery } from "@tanstack/react-query";
+import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 
 const CommentBox = ({ post }) => {
   const { user } = useAuth();
   const axiosPublic = useAxiosPublic();
+  const axiosSecure = useAxiosSecure();
 
   const { data: comments = [], refetch } = useQuery({
     queryKey: ['comments', post._id],
@@ -31,7 +33,7 @@ const CommentBox = ({ post }) => {
       comment: newComment,
     };
 
-    const addCommentRes = await axiosPublic.post('/comment', addComment);
+    const addCommentRes = await axiosSecure.post('/comment', addComment);
     refetch();
 
     console.log(addCommentRes);

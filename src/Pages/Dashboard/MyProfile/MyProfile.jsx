@@ -1,17 +1,17 @@
 import { useQuery } from "@tanstack/react-query";
 import useAuth from "../../../Hooks/useAuth";
-import useAxiosPublic from "../../../Hooks/useAxiosPublic";
 import { FaMedal } from "react-icons/fa";
+import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 
 
 const MyProfile = () => {
     const { user } = useAuth();
-    const axiosPublic = useAxiosPublic();
+    const axiosSecure = useAxiosSecure();
 
     const { data: userData = [], } = useQuery({
         queryKey: ['userData'],
         queryFn: async () => {
-            const res = await axiosPublic.get(`/users/${user.email}`);
+            const res = await axiosSecure.get(`/users/${user.email}`);
             return res.data
         }
     })

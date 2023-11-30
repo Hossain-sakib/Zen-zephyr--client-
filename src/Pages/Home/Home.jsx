@@ -3,9 +3,19 @@ import Banner from "../../Components/Banner/Banner";
 import Tags from "./Tags/Tags";
 import Announcements from "./Announcements/Announcements.Jsx";
 import AllPosts from "./AllPosts/AllPosts";
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
+import { useQuery } from "@tanstack/react-query";
 
 
 const Home = () => {
+    const axiosSecure = useAxiosSecure()
+    const { data: announcements = [] } = useQuery({
+        queryKey: ['announcements'],
+        queryFn: async () => {
+            const res = await axiosSecure.get('/announcements');
+            return res.data
+        }
+    });
     return (
         <div className="mb-24">
             <Helmet>
@@ -13,7 +23,10 @@ const Home = () => {
             </Helmet>
             <Banner></Banner>
             <Tags></Tags>
-            <Announcements></Announcements>
+            {announcements.length > 0 && (
+                <Announcements></Announcements>
+            )}
+
             <AllPosts></AllPosts>
         </div>
     );

@@ -6,11 +6,13 @@ import { useState } from "react";
 import CommentBox from "./Comments/CommentBox.jsx";
 import Comments from "./Comments/Comments.jsx";
 import { useQuery } from "@tanstack/react-query";
+import useAxiosSecure from "../../Hooks/useAxiosSecure.jsx";
 const PostPage = () => {
     const [postData, setPostData] = useState(useLoaderData());
     const [showComments, setShowComments] = useState(false);
     const { user } = useAuth();
     const axiosPublic = useAxiosPublic();
+    const axiosSecure = useAxiosSecure();
 
     const { data: comments = [] } = useQuery({
         queryKey: ['comments', postData._id],
@@ -42,20 +44,20 @@ const PostPage = () => {
         const currentDownVotes = currentPost.data.downVotes || [];
 
         if (currentUpVotes.includes(user?.email)) {
-            const updatedPost = await axiosPublic.patch(`/post/${postData._id}`, {
+            const updatedPost = await axiosSecure.patch(`/post/${postData._id}`, {
                 $pull: { upVotes: user?.email },
             });
             console.log('Removed UpVote:', updatedPost.data);
         }
         else if (!currentUpVotes.includes(user?.email) && currentDownVotes.includes(user?.email)) {
-            const updatedPost = await axiosPublic.patch(`/post/${postData._id}`, {
+            const updatedPost = await axiosSecure.patch(`/post/${postData._id}`, {
                 $pull: { downVotes: user?.email },
                 $push: { upVotes: user?.email },
             });
             console.log('Removed downVote and added upVote:', updatedPost.data);
         }
         else if (!currentUpVotes.includes(user?.email) && !currentDownVotes.includes(user?.email)) {
-            const updatedPost = await axiosPublic.patch(`/post/${postData._id}`, {
+            const updatedPost = await axiosSecure.patch(`/post/${postData._id}`, {
                 $push: { upVotes: user?.email },
             });
             console.log('added upVote:', updatedPost.data);
@@ -73,20 +75,20 @@ const PostPage = () => {
         const currentDownVotes = currentPost.data.downVotes || [];
 
         if (currentDownVotes.includes(user?.email)) {
-            const updatedPost = await axiosPublic.patch(`/post/${postData._id}`, {
+            const updatedPost = await axiosSecure.patch(`/post/${postData._id}`, {
                 $pull: { downVotes: user?.email },
             });
             console.log('Removed DownVote:', updatedPost.data);
         }
         else if (!currentDownVotes.includes(user?.email) && currentUpVotes.includes(user?.email)) {
-            const updatedPost = await axiosPublic.patch(`/post/${postData._id}`, {
+            const updatedPost = await axiosSecure.patch(`/post/${postData._id}`, {
                 $pull: { upVotes: user?.email },
                 $push: { downVotes: user?.email },
             });
             console.log('Removed UpVote and added downvote:', updatedPost.data);
         }
         else if (!currentDownVotes.includes(user?.email) && !currentUpVotes.includes(user?.email)) {
-            const updatedPost = await axiosPublic.patch(`/post/${postData._id}`, {
+            const updatedPost = await axiosSecure.patch(`/post/${postData._id}`, {
                 $push: { downVotes: user?.email },
             });
             console.log('added downvote:', updatedPost.data);

@@ -1,22 +1,23 @@
 
-import useAxiosPublic from "../../../Hooks/useAxiosPublic";
+
 import useAuth from "../../../Hooks/useAuth";
 import { FaTrash } from "react-icons/fa";
 import { useQuery } from "@tanstack/react-query";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
+import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 
 
 const MyPosts = () => {
 
-    const axiosPublic = useAxiosPublic();
+    const axiosSecure = useAxiosSecure();
     const { user } = useAuth();
     const userEmail = user?.email;
 
     const { data: userPosts = [] , refetch} = useQuery({
         queryKey: ['userPosts', userEmail],
         queryFn: async () => {
-            const res = await axiosPublic.get(`/user/${userEmail}/posts`);
+            const res = await axiosSecure.get(`/user/${userEmail}/posts`);
             return res.data;
         },
     });
@@ -32,7 +33,7 @@ const MyPosts = () => {
             confirmButtonText: "Yes, remove !"
         }).then((result) => {
             if (result.isConfirmed) {
-                axiosPublic.delete(`/post/${item._id}`)
+                axiosSecure.delete(`/post/${item._id}`)
                     .then(res => {
                         refetch();
                         if (res.data.deletedCount > 0) {
@@ -73,11 +74,11 @@ const MyPosts = () => {
                                 {item.title}
                             </td>
                             <td>
-                                {item.upVotes.length}
+                                {item.upVotes?.length}
 
                             </td>
                             <td>
-                                {item.downVotes.length}
+                                {item.downVotes?.length}
                             </td>
                             <td className="overflow-hidden transition-all hover:scale-105  hover:shadow-2xl hover:font-bold">
                                 <Link to={`/post/${item._id}`}>

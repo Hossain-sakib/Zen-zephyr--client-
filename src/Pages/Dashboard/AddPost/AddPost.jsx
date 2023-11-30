@@ -1,11 +1,11 @@
 import Swal from "sweetalert2";
 import useAuth from "../../../Hooks/useAuth";
-import useAxiosPublic from "../../../Hooks/useAxiosPublic";
 import { useNavigate } from "react-router-dom";
+import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 
 
 const AddPost = () => {
-    const axiosPublic = useAxiosPublic();
+    const axiosSecure = useAxiosSecure();
     const navigate = useNavigate();
     const tags = ["art",
         "article",
@@ -62,7 +62,7 @@ const AddPost = () => {
             downVotes:[],
             createdAt: formattedDate
         }
-        const addPostRes = await axiosPublic.post('/post', addPost);
+        const addPostRes = await axiosSecure.post('/post', addPost);
         console.log(addPostRes.data);
         if(addPostRes.data.insertedId){
             Swal.fire({
@@ -83,7 +83,7 @@ const AddPost = () => {
                     <img src="https://i.ibb.co/nz2jy0S/add-post.jpg" alt="" />
                 </div>
                 <div className="card shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
-                    <form onSubmit={handlePost} className="card-body bg-cyan-50">
+                    <form onSubmit={handlePost} className="card-body bg-cyan-50 rounded-lg border-2 border-cyan-600">
                         <div className="flex items-center gap-2">
                             <div className="avatar ">
                                 <div className="w-10 rounded-full overflow-hidden transition-all hover:scale-105  hover:shadow-2xl ">
