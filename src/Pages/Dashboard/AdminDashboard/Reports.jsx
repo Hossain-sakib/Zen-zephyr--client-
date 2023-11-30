@@ -4,6 +4,7 @@ import { useState } from "react";
 import { RiChatDeleteLine } from "react-icons/ri";
 import { MdOutlineRemoveCircleOutline } from "react-icons/md";
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet-async";
 
 
 const Reports = () => {
@@ -93,6 +94,9 @@ const Reports = () => {
 
     return (
         <div >
+            <Helmet>
+                <title>Zen Zephyr | Reports</title>
+            </Helmet>
             <div className="hero min-h-screen overflow-x-auto mt-12 ">
                 <table className="table table-zebra">
                     {/* head */}

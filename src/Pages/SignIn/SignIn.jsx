@@ -2,6 +2,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import SocialSignIn from "../../Components/SocialSignIn/SocialSignIn";
 import useAuth from "../../Hooks/useAuth";
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet-async";
 
 const SignIn = () => {
     const { signInUser } = useAuth();
@@ -44,6 +45,9 @@ const SignIn = () => {
 
     return (
         <div className="hero min-h-screen mb-24">
+            <Helmet>
+                <title>Zen Zephyr | Sign In</title>
+            </Helmet>
             <div className="hero-content flex-col lg:flex-row-reverse">
                 <div className="h-80 w-80">
                     <img src="https://i.ibb.co/Lr7v0LQ/Login.jpg" alt="" />

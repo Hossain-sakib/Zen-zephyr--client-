@@ -4,6 +4,7 @@ import { useState } from "react";
 import useAuth from "../../Hooks/useAuth";
 import Swal from "sweetalert2";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
+import { Helmet } from "react-helmet-async";
 
 const imagebb_key = import.meta.env.VITE_IMAGEBB_KEY;
 const imgbb_api = `https://api.imgbb.com/1/upload?key=${imagebb_key}`
@@ -101,6 +102,9 @@ const SignUp = () => {
     };
     return (
         <div className="hero min-h-screen mb-24">
+            <Helmet>
+                <title>Zen Zephyr | Sign Up</title>
+            </Helmet>
             <div className="hero-content flex-col lg:flex-row-reverse">
                 <div className="h-80 w-80">
                     <img src="https://i.ibb.co/X802tCb/SignUp.jpg" alt="" />

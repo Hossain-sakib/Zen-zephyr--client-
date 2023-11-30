@@ -7,6 +7,7 @@ import CommentBox from "./Comments/CommentBox.jsx";
 import Comments from "./Comments/Comments.jsx";
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../Hooks/useAxiosSecure.jsx";
+import { Helmet } from "react-helmet-async";
 const PostPage = () => {
     const [postData, setPostData] = useState(useLoaderData());
     const [showComments, setShowComments] = useState(false);
@@ -106,6 +107,9 @@ const PostPage = () => {
 
     return (
         <div className=" min-h-screen pt-24">
+            <Helmet>
+                <title>Zen Zephyr | Posts</title>
+            </Helmet>
             <div className=" border-2 border-cyan-400 rounded-lg bg-cyan-100 ">
                 <div className="">
                     <div className="p-4 space-y-4">

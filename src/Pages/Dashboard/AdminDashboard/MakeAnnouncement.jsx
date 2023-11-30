@@ -2,6 +2,7 @@ import Swal from "sweetalert2";
 import useAuth from "../../../Hooks/useAuth";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import { useNavigate } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 
 
 const MakeAnnouncement = () => {
@@ -41,6 +42,9 @@ const MakeAnnouncement = () => {
     };
     return (
         <div className="hero min-h-screen">
+            <Helmet>
+                <title>Zen Zephyr | Create Announcement</title>
+            </Helmet>
         <div className="hero-content flex-col lg:flex-row-reverse">
             <div className="h-80 w-80 lg:h-full lg:w-full">
                 <img src="https://i.ibb.co/zQGkxS4/Announcement.jpg" alt="" />

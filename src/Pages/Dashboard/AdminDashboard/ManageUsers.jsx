@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import Swal from "sweetalert2";
 import { MdOutlineAdminPanelSettings } from "react-icons/md"
+import { Helmet } from "react-helmet-async";
 
 
 
@@ -33,6 +34,9 @@ const ManageUsers = () => {
     };
     return (
         <div >
+            <Helmet>
+                <title>Zen Zephyr | Manage Users</title>
+            </Helmet>
             <div className="hero min-h-screen overflow-x-auto mt-12 ">
                 <table className="table table-zebra">
                     {/* head */}

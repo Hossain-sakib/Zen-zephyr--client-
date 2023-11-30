@@ -3,6 +3,7 @@ import { GoReport } from "react-icons/go";
 import { useState } from "react";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
+import { Helmet } from "react-helmet-async";
 
 const CommentList = () => {
     const [selectedComment, setSelectedComment] = useState(null);
@@ -44,6 +45,9 @@ const CommentList = () => {
 
     return (
         <div className="hero min-h-screen overflow-x-auto mt-12">
+            <Helmet>
+                <title>Zen Zephyr | Comments</title>
+            </Helmet>
             <table className="table border-2 border-cyan-500">
                 <thead>
                     <tr className="bg-cyan-400 text-sm font-bold text-cyan-950 text-center">

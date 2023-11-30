@@ -4,6 +4,7 @@ import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import { FaMedal } from "react-icons/fa";
 import useAxiosPublic from "../../../Hooks/useAxiosPublic";
 import DataPieChart from "./DataPieChart";
+import { Helmet } from "react-helmet-async";
 
 
 const AdminProfile = () => {
@@ -50,6 +51,9 @@ const AdminProfile = () => {
 
     return (
         <div className="hero min-h-screen">
+            <Helmet>
+                <title>Zen Zephyr | Admin Profile</title>
+            </Helmet>
             <div >
                 <div className="hero-content flex-col lg:flex-row space-y-8 bg-cyan-100 p-8 rounded-lg border-2 border-cyan-600">
                     <img src={userData?.userImage} className="w-96 h-96 rounded-lg shadow-2xl" />

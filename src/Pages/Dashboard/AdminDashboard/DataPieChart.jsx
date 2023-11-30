@@ -1,4 +1,5 @@
 import { PieChart, Pie, Cell, ResponsiveContainer } from 'recharts';
+import PropTypes from 'prop-types';
 
 const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
 
@@ -31,5 +32,12 @@ const DataPieChart = ({ totalUsers, totalPosts, totalComments, totalVotes }) => 
     </ResponsiveContainer>
   );
 };
+
+DataPieChart.propTypes = {
+  totalUsers: PropTypes.number,
+  totalPosts: PropTypes.number,
+  totalComments: PropTypes.number,
+  totalVotes: PropTypes.number,
+}
 
 export default DataPieChart;

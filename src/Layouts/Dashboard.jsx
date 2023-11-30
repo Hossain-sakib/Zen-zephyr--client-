@@ -1,12 +1,14 @@
 import { Link, Outlet } from "react-router-dom";
 import Sidebar from "../Components/Dashboard/Sidebar/Sidebar";
+import { Helmet } from "react-helmet-async";
 
 
 const Dashboard = () => {
     return (
-
-
         <div>
+            <Helmet>
+                <title>Zen Zephyr | Dashboard</title>
+            </Helmet>
             <div className="drawer lg:hidden">
                 <input id="my-drawer-4" type="checkbox" className="drawer-toggle" />
                 <div className="drawer-content p-4">
