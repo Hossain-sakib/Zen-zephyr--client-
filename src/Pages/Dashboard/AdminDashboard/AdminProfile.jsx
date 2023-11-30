@@ -3,6 +3,7 @@ import useAuth from "../../../Hooks/useAuth";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import { FaMedal } from "react-icons/fa";
 import useAxiosPublic from "../../../Hooks/useAxiosPublic";
+import DataPieChart from "./DataPieChart";
 
 
 const AdminProfile = () => {
@@ -64,21 +65,37 @@ const AdminProfile = () => {
                         <p className="font-light">{userData?.email}</p>
                     </div>
                 </div>
-                <div className="flex flex-col items-center justify-center space-y-2 mt-8">
-                    <h1 className="text-6xl font-semibold text-cyan-800 ">Site Statistics</h1>
+                <div className="flex flex-col items-center justify-center space-y-2 mt-16">
+                    <h1 className="text-6xl font-semibold text-cyan-800 mb-4">Site Statistics</h1>
                     <div className="text-center space-y-2">
-                        <h1 className="text-2xl font-semibold text-cyan-600">Total Users:  {users.length}</h1>
-                        <h1 className="text-2xl font-semibold text-cyan-600">Total Site Post:  {allPost.length}</h1>
-
-                        <h1 className="text-2xl font-semibold text-cyan-600">Total Votes:  {totalVotes}</h1>
-                        <h1 className="text-2xl font-semibold text-cyan-600">Total Comments:  {comments.length}</h1>
-                    </div>
-                    <div>
-                        
+                        <div className="flex items-center gap-2">
+                            <div className="badge bg-blue-500 badge-md"></div>
+                            <h1 className="text-2xl font-semibold text-cyan-600">Total Users:  {users.length}</h1>
+                        </div>
+                        <div className="flex items-center gap-2">
+                            <div className="badge bg-emerald-500 badge-md"></div>
+                            <h1 className="text-2xl font-semibold text-cyan-600">Total Site Post:  {allPost.length}</h1>
+                        </div>
+                        <div className="flex items-center gap-2">
+                            <div className="badge bg-orange-500 badge-md"></div>
+                            <h1 className="text-2xl font-semibold text-cyan-600">Total Votes:  {totalVotes}</h1>
+                        </div>
+                        <div className="flex items-center gap-2">
+                            <div className="badge bg-yellow-500 badge-md"></div>
+                            <h1 className="text-2xl font-semibold text-cyan-600">Total Comments:  {comments.length}</h1>
+                        </div>
                     </div>
                 </div>
+                <div className="-mt-24">
+                    <DataPieChart
+                        totalUsers={users.length}
+                        totalPosts={allPost.length}
+                        totalComments={comments.length}
+                        totalVotes={totalVotes}
+                    >
+                    </DataPieChart>
+                </div>
             </div>
-
         </div>
     );
 };
