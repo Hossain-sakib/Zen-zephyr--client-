@@ -134,7 +134,7 @@ const SignUp = () => {
                             <input type="password" placeholder="password" name="password" className="input border-cyan-400 input-bordered" required />
                         </div>
                         <div className="form-control mt-6">
-                            <button type="submit" className="btn bg-cyan-300 hover:bg-cyan-400 font-bold">Sign Up</button>
+                            <button type="submit" className="btn bg-cyan-300 hover:bg-cyan-400 font-bold overflow-hidden transition-all hover:scale-105  hover:shadow-2xl">Sign Up</button>
                         </div>
                     </form>
                     {

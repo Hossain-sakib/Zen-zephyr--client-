@@ -10,6 +10,9 @@ import PrivateRoutes from "../Routes/PrivateRoutes"
 import AddPost from "../Pages/Dashboard/AddPost/AddPost";
 import MyProfile from "../Pages/Dashboard/MyProfile/MyProfile"
 import PostPage from "../Pages/PostPage/PostPage";
+import MyPosts from "../Pages/Dashboard/MyPosts/MyPosts";
+import ManageUsers from "../Pages/Dashboard/AdminDashboard/ManageUsers";
+
 
 
 
@@ -50,6 +53,19 @@ export const router = createBrowserRouter([
                 path:'addPost',
                 element:<AddPost></AddPost>
             },
+            {
+                path:'myPost',
+                element:<MyPosts></MyPosts>
+            },
+
+
+            // admin routes
+            {
+                path:'manageUsers',
+                element:<ManageUsers></ManageUsers>
+            },
+
+           
         ]
     }
 ]);

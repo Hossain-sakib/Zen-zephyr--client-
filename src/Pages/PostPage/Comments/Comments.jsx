@@ -31,11 +31,16 @@ const Comments = ({ postId }) => {
 
     return (
         <div className="px-4">
-            <div className="overflow-hidden transition-all hover:scale-105  hover:shadow-2xl my-2 bg-cyan-300 bg-opacity-30 flex items-center justify-center rounded-lg">
-                <button onClick={() => setShowAllComments(!showAllComments)} className="text-center text-cyan-700 text-sm font-bold py-1">
-                    {showAllComments ? "Show Less" : "Show All"}
-                </button>
-            </div>
+            {comments.length > 0 && (
+                <div className="overflow-hidden transition-all hover:scale-105  hover:shadow-2xl my-2 bg-cyan-300 bg-opacity-30 flex items-center justify-center rounded-lg">
+                    <button onClick={() => setShowAllComments(!showAllComments)} className="text-center text-cyan-700 text-sm font-bold py-1">
+                        {showAllComments ? "Show Less" : "Show All"}
+                    </button>
+                </div>
+            )}
+            {comments.length === 0 && (
+                <p className="text-cyan-500 text-center font-semibold text-sm">No comments available....</p>
+            )}
             {displayedComments.map((comment) => (
                 <div key={comment._id}>
                     <div className="flex items-center gap-2">
@@ -52,6 +57,6 @@ const Comments = ({ postId }) => {
 
 Comments.propTypes = {
     postId: PropTypes.string,
-  };
+};
 
 export default Comments;

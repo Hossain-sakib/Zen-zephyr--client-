@@ -26,9 +26,9 @@ const Dashboard = () => {
                 </div>
 
             </div>
-            <div className="lg:flex hidden">
-                <div><Sidebar></Sidebar></div>
-                <div><Outlet></Outlet></div>
+            <div className="lg:flex gap-8 hidden">
+                <div className=""><Sidebar></Sidebar></div>
+                <div className=""><Outlet></Outlet></div>
             </div>
         </div>
 

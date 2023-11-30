@@ -66,7 +66,7 @@ const SignIn = () => {
                             </label>
                         </div>
                         <div className="form-control mt-6">
-                            <button type="submit" className="btn bg-cyan-300 hover:bg-cyan-400 font-bold">Sign In</button>
+                            <button type="submit" className="btn bg-cyan-300 hover:bg-cyan-400 font-bold overflow-hidden transition-all hover:scale-105  hover:shadow-2xl">Sign In</button>
                         </div>
                     </form>
                     <SocialSignIn></SocialSignIn>

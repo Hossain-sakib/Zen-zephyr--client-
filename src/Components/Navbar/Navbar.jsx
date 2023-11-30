@@ -1,8 +1,9 @@
 import { Link, NavLink } from "react-router-dom";
 import {
-    AiOutlineHome, AiOutlineCrown, AiOutlineNotification, AiOutlineLogout, AiOutlineUser, AiOutlineDashboard
+    AiOutlineHome, AiOutlineCrown, AiOutlineLogout, AiOutlineUser, AiOutlineDashboard
 } from "react-icons/ai";
 import useAuth from "../../Hooks/useAuth";
+import { IoMdNotificationsOutline } from "react-icons/io";
 
 const Navbar = () => {
 
@@ -10,7 +11,7 @@ const Navbar = () => {
         <>
             <li className="font-semibold text-lg overflow-hidden transition-all hover:scale-105  hover:shadow-2xl"><Link to='/'><AiOutlineHome></AiOutlineHome>Home</Link></li>
             <li className="font-semibold text-lg overflow-hidden transition-all hover:scale-105  hover:shadow-2xl"><Link to='/membership'><AiOutlineCrown></AiOutlineCrown>Membership</Link></li>
-            <li className="font-semibold text-lg overflow-hidden transition-all hover:scale-105  hover:shadow-2xl"><Link to='/notifications'><AiOutlineNotification></AiOutlineNotification>Notifications</Link></li>
+            <li className="font-semibold text-lg overflow-hidden transition-all hover:scale-105  hover:shadow-2xl"><Link to='/notifications'><IoMdNotificationsOutline></IoMdNotificationsOutline>Notifications</Link></li>
 
         </>
 
