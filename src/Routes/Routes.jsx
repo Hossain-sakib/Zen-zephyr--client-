@@ -14,6 +14,10 @@ import MyPosts from "../Pages/Dashboard/MyPosts/MyPosts";
 import ManageUsers from "../Pages/Dashboard/AdminDashboard/ManageUsers";
 import AdminRoutes from "../Routes/AdminRoutes"
 import MakeAnnouncement from "../Pages/Dashboard/AdminDashboard/MakeAnnouncement";
+import Notifications from "../Pages/Notifications/Notifications";
+import CommentList from "../Pages/Dashboard/CommentList/CommentList";
+import Reports from "../Pages/Dashboard/AdminDashboard/Reports";
+
 
 
 
@@ -33,6 +37,10 @@ export const router = createBrowserRouter([
                 element:<PostPage></PostPage>,
                 loader: ({params}) => fetch(`http://localhost:5000/post/${params.id}`) 
             },
+            {
+                path: "/notifications",
+                element:<PrivateRoutes><Notifications></Notifications></PrivateRoutes>
+            },
         ]
     },
     {
@@ -49,15 +57,20 @@ export const router = createBrowserRouter([
         children:[
             {
                 path:'profile',
-                element:<MyProfile></MyProfile>
+                element:<PrivateRoutes><MyProfile></MyProfile></PrivateRoutes>
             },
             {
                 path:'addPost',
-                element:<AddPost></AddPost>
+                element:<PrivateRoutes><AddPost></AddPost></PrivateRoutes>
             },
             {
                 path:'myPost',
-                element:<MyPosts></MyPosts>
+                element:<PrivateRoutes><MyPosts></MyPosts></PrivateRoutes>
+            },
+            {
+                path:'commentList/:id',
+                element:<PrivateRoutes><CommentList></CommentList></PrivateRoutes>,
+                loader: ({params}) => fetch(`http://localhost:5000/post/${params.id}/comments`) 
             },
 
 
@@ -69,6 +82,10 @@ export const router = createBrowserRouter([
             {
                 path:'makeAnnouncement',
                 element:<AdminRoutes><MakeAnnouncement></MakeAnnouncement></AdminRoutes>
+            },
+            {
+                path:'reports',
+                element:<AdminRoutes><Reports></Reports></AdminRoutes>
             },
 
            

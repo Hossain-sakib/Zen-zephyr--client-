@@ -14,7 +14,7 @@ const MyPosts = () => {
     const { user } = useAuth();
     const userEmail = user?.email;
 
-    const { data: userPosts = [] , refetch} = useQuery({
+    const { data: userPosts = [], refetch } = useQuery({
         queryKey: ['userPosts', userEmail],
         queryFn: async () => {
             const res = await axiosSecure.get(`/user/${userEmail}/posts`);
@@ -81,7 +81,7 @@ const MyPosts = () => {
                                 {item.downVotes?.length}
                             </td>
                             <td className="overflow-hidden transition-all hover:scale-105  hover:shadow-2xl hover:font-bold">
-                                <Link to={`/post/${item._id}`}>
+                                <Link to={`/dashboard/commentList/${item._id}`}>
                                     Show Comments
                                 </Link>
                             </td>

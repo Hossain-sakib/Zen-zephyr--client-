@@ -29,8 +29,9 @@ const CommentBox = ({ post }) => {
     const addComment = {
       postId: post._id,
       commenterName: user?.displayName,
+      commenterEmail:user?.email,
       createdAt: formattedDate,
-      comment: newComment,
+      comment: newComment,   
     };
 
     const addCommentRes = await axiosSecure.post('/comment', addComment);

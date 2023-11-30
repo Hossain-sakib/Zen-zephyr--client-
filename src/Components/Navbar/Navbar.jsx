@@ -4,18 +4,47 @@ import {
 } from "react-icons/ai";
 import useAuth from "../../Hooks/useAuth";
 import { IoMdNotificationsOutline } from "react-icons/io";
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
+import { useQuery } from "@tanstack/react-query";
+import useAxiosPublic from "../../Hooks/useAxiosPublic";
 
 const Navbar = () => {
+    const axiosSecure = useAxiosSecure()
+    const { data: announcements = [] } = useQuery({
+        queryKey: ['announcements'],
+        queryFn: async () => {
+            const res = await axiosSecure.get('/announcements');
+            return res.data
+        }
+    });
+    const axiosPublic = useAxiosPublic();
+    const { data: allPost = [] } = useQuery({
+        queryKey: ['allPost'],
+        queryFn: async () => {
+            const res = await axiosPublic.get('/post');
+            return res.data
+        }
+    });
+    const allPOstCount = allPost.length;
+    const announcementCount = announcements.length;
 
     const navLinks =
         <>
-            <li className="font-semibold text-lg overflow-hidden transition-all hover:scale-105  hover:shadow-2xl"><Link to='/'><AiOutlineHome></AiOutlineHome>Home</Link></li>
-            <li className="font-semibold text-lg overflow-hidden transition-all hover:scale-105  hover:shadow-2xl"><Link to='/membership'><AiOutlineCrown></AiOutlineCrown>Membership</Link></li>
-            <li className="font-semibold text-lg overflow-hidden transition-all hover:scale-105  hover:shadow-2xl"><Link to='/notifications'><IoMdNotificationsOutline></IoMdNotificationsOutline>Notifications</Link></li>
+            <li className="font-semibold text-lg overflow-hidden transition-all hover:scale-105 py-2 hover:shadow-2xl"><Link to='/'><AiOutlineHome></AiOutlineHome>Home
+            {allPOstCount > 0 && (
+                        <div className="badge bg-red-600 text-white -ml-2 -mt-3">{allPOstCount}</div>
+                    )}</Link></li>
+            <li className="font-semibold text-lg overflow-hidden transition-all hover:scale-105  py-2 hover:shadow-2xl"><Link to='/membership'><AiOutlineCrown></AiOutlineCrown>Membership</Link></li>
+            <li className="font-semibold text-lg overflow-hidden transition-all hover:scale-105  py-2 hover:shadow-2xl"><Link to='/notifications'>
+                <IoMdNotificationsOutline></IoMdNotificationsOutline>
+                Notifications
+                {announcementCount > 0 && (
+                        <div className="badge bg-red-600 text-white -ml-2 -mt-3">{announcementCount}</div>
+                    )}</Link></li>
 
         </>
 
-const { signOutUser, user } = useAuth();
+    const { signOutUser, user } = useAuth();
 
     return (
         <>
@@ -59,13 +88,13 @@ const { signOutUser, user } = useAuth();
                                     className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow  rounded-box w-52 bg-cyan-600 bg-opacity-80 space-y-2"
                                 >
                                     <NavLink
-                                        
+
                                         className="px-4 py-2  rounded-lg flex  font-semibold  items-center gap-2"
                                     >
                                         {user?.displayName}<AiOutlineUser className="text-xl"></AiOutlineUser>
                                     </NavLink>
                                     <NavLink to={`/dashboard/profile`}
-                                        
+
                                         className="px-4 py-2  rounded-lg  font-semibold
                                         hover:bg-base-100 hover:bg-opacity-10 hover:font-bold flex   items-center gap-2"
                                     >
@@ -82,12 +111,12 @@ const { signOutUser, user } = useAuth();
                         ) : (
                             <NavLink
                                 to="/signin"
-                               className="btn bg-cyan-300 hover:bg-cyan-400 font-bold overflow-hidden transition-all hover:scale-105  hover:shadow-2xl"
+                                className="btn bg-cyan-300 hover:bg-cyan-400 font-bold overflow-hidden transition-all hover:scale-105  hover:shadow-2xl"
                             >
                                 Join Us
                             </NavLink>
                         )}
-                       
+
                     </div>
                 </div>
             </div>

@@ -37,7 +37,7 @@ const Sidebar = () => {
                             <NavLink to='/dashboard/manageUsers'><LuUserCog2></LuUserCog2> Manage Users</NavLink>
                         </li>
                         <li className="border-2 overflow-hidden transition-all hover:scale-105  hover:shadow-2xl">
-                            <NavLink to='/dashboard/manageUsers'><RiSpam2Line></RiSpam2Line> Reported Activities</NavLink>
+                            <NavLink to='/dashboard/reports'><RiSpam2Line></RiSpam2Line> Reported Activities</NavLink>
                         </li>
                         
                     </ul>

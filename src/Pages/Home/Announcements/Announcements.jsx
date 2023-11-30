@@ -24,9 +24,9 @@ const Announcements = () => {
     };
     return (
         <div className="text-center bg-cyan-100 border-2 border-cyan-600 rounded-lg  space-y-2 my-12 py-4">
-            <div className="flex flex-col-reverse p-4 gap-8 md:flex-row">
+            <div className="flex flex-col-reverse items-center justify-center p-4 gap-8 md:flex-row">
                 <div className="flex-1">
-                    <h3 className="text-center text-3xl font-bold text-cyan-500">Announcements: </h3>
+                    <h3 className="text-center text-3xl font-bold text-cyan-500 py-4">Announcements: </h3>
                     <div>
                         {announcements.map((announcement) => (
                             <div key={announcement._id} className="border-2 border-cyan-400 rounded-lg p-2 space-y-2">
