@@ -18,7 +18,6 @@ const Reports = () => {
             return res.data
         }
     });
-    console.log(allReport);
 
 
     const handleReadMore = (comment) => {
@@ -43,7 +42,6 @@ const Reports = () => {
                         axiosSecure.delete(`/reports/${reportID}`)
                             .then(res => {
                                 refetch();
-                                console.log(res.data);
                             })
 
                         if (res.data.deletedCount > 0) {

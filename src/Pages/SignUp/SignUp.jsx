@@ -27,7 +27,7 @@ const SignUp = () => {
         const password = form.password.value;
         const imageFile = form.photo.files[0];
 
-        try {
+       
 
             const formData = new FormData();
             formData.append('image', imageFile);
@@ -62,7 +62,6 @@ const SignUp = () => {
 
             const result = await signUpUser(email, password);
             const user = result.user;
-            console.log(user);
             const photo = imgRes.data.data.display_url
             await updateUser(name,photo);
 
@@ -96,9 +95,7 @@ const SignUp = () => {
                 });
                 navigate('/');
             }
-        } catch (error) {
-            console.error(error);
-        }
+       
     };
     return (
         <div className="hero min-h-screen mb-24">

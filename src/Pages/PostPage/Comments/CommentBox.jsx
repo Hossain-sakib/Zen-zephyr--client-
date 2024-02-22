@@ -17,7 +17,6 @@ const CommentBox = ({ post }) => {
       return res.data;
     },
   });
-  console.log(comments);
 
   const handlePostComment = async (e) => {
     e.preventDefault();
@@ -36,8 +35,6 @@ const CommentBox = ({ post }) => {
 
     const addCommentRes = await axiosSecure.post('/comment', addComment);
     refetch();
-
-    console.log(addCommentRes);
   };
 
   return (

@@ -28,7 +28,6 @@ const CommentList = () => {
             commenterEmail: item.commenterEmail
         }
         const reportDataRes = await axiosSecure.post('/reports', reportData);
-        console.log(reportDataRes.data);
         if(reportDataRes.data.insertedId){
             Swal.fire({
                 position: "top-end",

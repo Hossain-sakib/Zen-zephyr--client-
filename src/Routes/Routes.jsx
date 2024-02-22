@@ -38,7 +38,7 @@ export const router = createBrowserRouter([
             {
                 path: "/post/:id",
                 element:<PostPage></PostPage>,
-                loader: ({params}) => fetch(`https://zen-zepyr-server-hb66iu206-sakibs-projects-05a313dc.vercel.app/post/${params.id}`) 
+                loader: ({params}) => fetch(`https://zen-zepyr-server.vercel.app/post/${params.id}`) 
             },
             {
                 path: "/notifications",
@@ -74,7 +74,7 @@ export const router = createBrowserRouter([
             {
                 path:'commentList/:id',
                 element:<PrivateRoutes><CommentList></CommentList></PrivateRoutes>,
-                loader: ({params}) => fetch(`https://zen-zepyr-server-hb66iu206-sakibs-projects-05a313dc.vercel.app/post/${params.id}/comments`) 
+                loader: ({params}) => fetch(`https://zen-zepyr-server.vercel.app/post/${params.id}/comments`) 
             },
 
 

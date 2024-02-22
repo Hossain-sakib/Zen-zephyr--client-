@@ -13,7 +13,6 @@ const SocialSignIn = () => {
     const handleGoogleSignIn = () =>{
         googleSignIn()
         .then(result=>{
-            console.log(result);
             const badge = 'bronze'
             const userInfo = {
                 email: result.user?.email,
@@ -24,7 +23,6 @@ const SocialSignIn = () => {
             }
             axiosPublic.post('/users',userInfo)
             .then(res=>{
-                console.log(res.data);
                 navigate('/');
             })
             Swal.fire({

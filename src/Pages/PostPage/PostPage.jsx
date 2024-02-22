@@ -79,20 +79,17 @@ const PostPage = () => {
             const updatedPost = await axiosSecure.patch(`/post/${postData._id}`, {
                 $pull: { downVotes: user?.email },
             });
-            console.log('Removed DownVote:', updatedPost.data);
         }
         else if (!currentDownVotes.includes(user?.email) && currentUpVotes.includes(user?.email)) {
             const updatedPost = await axiosSecure.patch(`/post/${postData._id}`, {
                 $pull: { upVotes: user?.email },
                 $push: { downVotes: user?.email },
             });
-            console.log('Removed UpVote and added downvote:', updatedPost.data);
         }
         else if (!currentDownVotes.includes(user?.email) && !currentUpVotes.includes(user?.email)) {
             const updatedPost = await axiosSecure.patch(`/post/${postData._id}`, {
                 $push: { downVotes: user?.email },
             });
-            console.log('added downvote:', updatedPost.data);
         }
         const updatedPostData = await axiosPublic.get(`/post/${postData._id}`);
         setPostData(updatedPostData.data);

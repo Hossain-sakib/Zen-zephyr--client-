@@ -28,7 +28,6 @@ const MakeAnnouncement = () => {
             createdAt: formattedDate
         };
         const addAnnouncementRes = await axiosSecure.post('/announcements',addAnnouncement);
-        console.log(addAnnouncementRes.data);
         if(addAnnouncementRes.data.insertedId){
             Swal.fire({
                 position: "top-end",

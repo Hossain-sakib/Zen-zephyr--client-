@@ -3,11 +3,11 @@ import { useNavigate } from "react-router-dom";
 import useAuth from "./useAuth";
 
 const axiosSecure = axios.create({
-    baseURL: 'https://zen-zepyr-server-hb66iu206-sakibs-projects-05a313dc.vercel.app'
+    baseURL: 'https://zen-zepyr-server.vercel.app'
 })
 const useAxiosSecure = () => {
     const navigate = useNavigate();
-    const { logoutUser } = useAuth()
+    const { logoutUser } = useAuth();
     axiosSecure.interceptors.request.use(function (config) {
         const token = localStorage.getItem('access-token')
         console.log('request stopped by interceptors', token);

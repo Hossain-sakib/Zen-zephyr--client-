@@ -17,8 +17,6 @@ const MyProfile = () => {
         }
     })
 
-    console.log(userData);
-
     return (
         <div className="hero min-h-screen">
             <Helmet>

@@ -64,7 +64,6 @@ const AddPost = () => {
             createdAt: formattedDate
         }
         const addPostRes = await axiosSecure.post('/post', addPost);
-        console.log(addPostRes.data);
         if(addPostRes.data.insertedId){
             Swal.fire({
                 position: "top-end",
