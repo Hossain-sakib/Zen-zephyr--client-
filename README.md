@@ -81,3 +81,28 @@ message. Text and Cloudinary photos are supported. Enter sends; Shift+Enter
 adds a line. Header/sidebar/mobile unread indicators refresh automatically.
 Opening another conversation resets its composer to prevent sending an old
 draft to the wrong recipient. Fictional demo accounts cannot receive messages.
+
+
+## Structure, SEO and performance
+
+`src/Community/Community.jsx` coordinates the application. Feed, people, shell,
+authentication, activity, stories and shared UI live in separate modules. Large
+social screens and legacy admin tools load on demand. Removed legacy pages are
+available in Git history instead of being kept as duplicate implementations.
+Run `npm run format:check`, `npm run lint`, `npm run build` and `npm test`.
+
+The build pre-renders public directory pages and authentication entry screens.
+`src/seo/metadata.js` owns canonical URLs and route metadata. The build generates
+robots.txt and a sitemap containing public directory URLs. Private screens are
+noindex and excluded from the sitemap. Public entity metadata is rendered by
+`netlify/edge-functions/public-seo.js` using anonymous API requests only. Missing
+entities return HTTP 404; private and fictional demo content remains noindex.
+Dynamic entity responses are never cached, so a later privacy change cannot
+leave a public content snapshot in our CDN. Do not pre-render member content at
+build time or forward auth tokens through the SEO renderer.
+
+Images use responsive Cloudinary transformations with automatic quality/format.
+Hashed assets receive immutable caching; HTML remains revalidated. The original
+favicon artwork lives in `design/`, while production icons are served through
+Cloudinary. Search rankings and indexing are controlled by search engines;
+technical metadata cannot guarantee a ranking or a universal SEO score.

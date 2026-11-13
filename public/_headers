@@ -1,2 +1,62 @@
 /*
   Content-Security-Policy: frame-ancestors https://sakib-studio.netlify.app;
+
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/robots.txt
+  Cache-Control: public, max-age=600
+
+/sitemap.xml
+  Cache-Control: public, max-age=600
+
+/dashboard
+  X-Robots-Tag: noindex, nofollow
+
+/dashboard/*
+  X-Robots-Tag: noindex, nofollow
+
+/messages
+  X-Robots-Tag: noindex, nofollow
+
+/messages/*
+  X-Robots-Tag: noindex, nofollow
+
+/saved
+  X-Robots-Tag: noindex, nofollow
+
+/saved/*
+  X-Robots-Tag: noindex, nofollow
+
+/notifications
+  X-Robots-Tag: noindex, nofollow
+
+/notifications/*
+  X-Robots-Tag: noindex, nofollow
+
+/settings
+  X-Robots-Tag: noindex, nofollow
+
+/settings/*
+  X-Robots-Tag: noindex, nofollow
+
+/moderation
+  X-Robots-Tag: noindex, nofollow
+
+/moderation/*
+  X-Robots-Tag: noindex, nofollow
+
+/signin
+  X-Robots-Tag: noindex, nofollow
+
+/signin/*
+  X-Robots-Tag: noindex, nofollow
+
+/signup
+  X-Robots-Tag: noindex, nofollow
+
+/signup/*
+  X-Robots-Tag: noindex, nofollow
+
+/profile/me
+  X-Robots-Tag: noindex, nofollow

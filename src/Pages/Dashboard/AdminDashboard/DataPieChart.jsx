@@ -38,6 +38,6 @@ DataPieChart.propTypes = {
   totalPosts: PropTypes.number,
   totalComments: PropTypes.number,
   totalVotes: PropTypes.number,
-}
+};
 
 export default DataPieChart;

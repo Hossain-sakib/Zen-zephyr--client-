@@ -22,3 +22,9 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Local deployment state and runtime credentials
+.netlify/
+.env
+.env.*
+!.env.example
