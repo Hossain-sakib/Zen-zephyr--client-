@@ -74,3 +74,10 @@ remove their records later; Cloudinary assets are not automatically erased.
 The frontend permits framing only by `https://sakib-studio.netlify.app` through
 its response CSP. Keep `public/_headers` in the published frontend build and do
 not add a conflicting `X-Frame-Options` header.
+
+
+Chat: open Messages, choose New message, search for a real member and send a
+message. Text and Cloudinary photos are supported. Enter sends; Shift+Enter
+adds a line. Header/sidebar/mobile unread indicators refresh automatically.
+Opening another conversation resets its composer to prevent sending an old
+draft to the wrong recipient. Fictional demo accounts cannot receive messages.
