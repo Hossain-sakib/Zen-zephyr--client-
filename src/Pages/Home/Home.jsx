@@ -1,7 +1,7 @@
 import { Helmet } from "react-helmet-async";
 import Banner from "../../Components/Banner/Banner";
 import Tags from "./Tags/Tags";
-import Announcements from "./Announcements/Announcements.Jsx";
+import Announcements from "./Announcements/Announcements.jsx";
 import AllPosts from "./AllPosts/AllPosts";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";

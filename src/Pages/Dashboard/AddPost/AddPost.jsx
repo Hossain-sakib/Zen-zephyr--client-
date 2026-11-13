@@ -83,7 +83,7 @@ const AddPost = () => {
             </Helmet>
             <div className="hero-content flex-col lg:flex-row-reverse">
                 <div className="h-80 w-80 lg:h-full lg:w-full">
-                    <img src="https://i.ibb.co/nz2jy0S/add-post.jpg" alt="" />
+                    <img src="https://res.cloudinary.com/wiooqx7y/image/upload/v1794474365/zen-zephyr/site-assets/fd60ff7499a9d2ac845c.jpg" alt="" />
                 </div>
                 <div className="card shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
                     <form onSubmit={handlePost} className="card-body bg-cyan-50 rounded-lg border-2 border-cyan-600">

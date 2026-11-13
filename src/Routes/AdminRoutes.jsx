@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import { Navigate, useLocation } from "react-router-dom";
 import useAdmin from "../Hooks/useAdmin";
 import useAuth from "../Hooks/useAuth";
@@ -13,7 +14,8 @@ const AdminRoutes = ({children}) => {
     if (user && isAdmin){
         return children;
     }
-    return <Navigate to='/login' state={{from: location}} replace></Navigate>
+    return <Navigate to='/signin' state={{from: location}} replace></Navigate>
 };
 
+AdminRoutes.propTypes = { children: PropTypes.node.isRequired };
 export default AdminRoutes;

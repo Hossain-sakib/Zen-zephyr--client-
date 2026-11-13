@@ -10,7 +10,7 @@ const CommentBox = ({ post }) => {
   const axiosPublic = useAxiosPublic();
   const axiosSecure = useAxiosSecure();
 
-  const { data: comments = [], refetch } = useQuery({
+  const { refetch } = useQuery({
     queryKey: ['comments', post._id],
     queryFn: async () => {
       const res = await axiosPublic.get(`/post/${post._id}/comments`);
@@ -33,7 +33,8 @@ const CommentBox = ({ post }) => {
       comment: newComment,   
     };
 
-    const addCommentRes = await axiosSecure.post('/comment', addComment);
+    await axiosSecure.post('/comment', addComment);
+    form.reset();
     refetch();
   };
 

@@ -46,7 +46,7 @@ const MakeAnnouncement = () => {
             </Helmet>
         <div className="hero-content flex-col lg:flex-row-reverse">
             <div className="h-80 w-80 lg:h-full lg:w-full">
-                <img src="https://i.ibb.co/zQGkxS4/Announcement.jpg" alt="" />
+                <img src="https://res.cloudinary.com/wiooqx7y/image/upload/v1794474372/zen-zephyr/site-assets/e99c1e08cd2749e8601a.jpg" alt="" />
             </div>
             <div className="card shrink-0 w-full max-w-sm shadow-2xl bg-base-100 ">
                 <form onSubmit={handleAnnounce} className="card-body bg-cyan-50 rounded-lg border-2 border-cyan-600">

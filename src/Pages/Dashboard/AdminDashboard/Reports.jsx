@@ -40,7 +40,7 @@ const Reports = () => {
                 axiosSecure.delete(`/comment/${commentID}`)
                     .then(res => {
                         axiosSecure.delete(`/reports/${reportID}`)
-                            .then(res => {
+                            .then(() => {
                                 refetch();
                             })
 

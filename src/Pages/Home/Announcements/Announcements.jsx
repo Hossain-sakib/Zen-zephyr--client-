@@ -50,7 +50,7 @@ const Announcements = () => {
                     </div>
                 </div>
                 <div className="flex-1 rounded-lg">
-                    <img src="https://i.ibb.co/zQGkxS4/Announcement.jpg" alt="" />
+                    <img src="https://res.cloudinary.com/wiooqx7y/image/upload/v1794474372/zen-zephyr/site-assets/e99c1e08cd2749e8601a.jpg" alt="" />
                 </div>
             </div>
         </div>

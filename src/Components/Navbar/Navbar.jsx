@@ -1,6 +1,6 @@
 import { Link, NavLink } from "react-router-dom";
 import {
-    AiOutlineHome, AiOutlineCrown, AiOutlineLogout, AiOutlineUser, AiOutlineDashboard
+    AiOutlineHome, AiOutlineLogout, AiOutlineUser, AiOutlineDashboard
 } from "react-icons/ai";
 import useAuth from "../../Hooks/useAuth";
 import { IoMdNotificationsOutline } from "react-icons/io";
@@ -34,7 +34,6 @@ const Navbar = () => {
             {allPOstCount > 0 && (
                         <div className="badge bg-red-600 text-white -ml-2 -mt-3">{allPOstCount}</div>
                     )}</Link></li>
-            <li className="font-semibold text-lg overflow-hidden transition-all hover:scale-105  py-2 hover:shadow-2xl"><Link to='/membership'><AiOutlineCrown></AiOutlineCrown>Membership</Link></li>
             <li className="font-semibold text-lg overflow-hidden transition-all hover:scale-105  py-2 hover:shadow-2xl"><Link to='/notifications'>
                 <IoMdNotificationsOutline></IoMdNotificationsOutline>
                 Notifications
@@ -61,7 +60,7 @@ const Navbar = () => {
                         </ul>
                     </div>
 
-                    <Link to='/'><img className="btn btn-square btn-ghost w-16 overflow-hidden transition-all hover:scale-105  hover:shadow-2xl" src="https://i.ibb.co/vB6mq30/zz2.png" alt="" /></Link>
+                    <Link to='/'><img className="btn btn-square btn-ghost w-16 overflow-hidden transition-all hover:scale-105  hover:shadow-2xl" src="https://res.cloudinary.com/wiooqx7y/image/upload/v1794413174/zen-zephyr/site-assets/d0d446e39053c6df7251.png" alt="" /></Link>
 
                 </div>
 

@@ -8,22 +8,22 @@ const Banner = () => {
     return (
         <div >
             <Carousel showThumbs={false}>
-                <div className="hero w-full h-[640px] " style={{ backgroundImage: 'url(https://i.ibb.co/4gSDCxn/banner1.jpg)' }}>
+                <div className="hero w-full h-[640px] " style={{ backgroundImage: 'url(https://res.cloudinary.com/wiooqx7y/image/upload/v1794413172/zen-zephyr/site-assets/f08da52e8b1dac1804a4.jpg)' }}>
                     <div className="hero-overlay bg-opacity-60"></div>
                     <div className="hero-content text-center text-neutral-content">
                     </div>
                 </div>
-                <div className="hero w-full h-[640px]" style={{ backgroundImage: 'url(https://i.ibb.co/3SBC4zq/banner2.jpg)' }}>
+                <div className="hero w-full h-[640px]" style={{ backgroundImage: 'url(https://res.cloudinary.com/wiooqx7y/image/upload/v1794413173/zen-zephyr/site-assets/dc42c6c34a87e0224873.jpg)' }}>
                     <div className="hero-overlay bg-opacity-60"></div>
                     <div className="hero-content text-center text-neutral-content">
                     </div>
                 </div>
-                <div className="hero w-full h-[640px]" style={{ backgroundImage: 'url(https://i.ibb.co/vhzHXmL/banner3.jpg)' }}>
+                <div className="hero w-full h-[640px]" style={{ backgroundImage: 'url(https://res.cloudinary.com/wiooqx7y/image/upload/v1794413177/zen-zephyr/site-assets/1e7bb165547cf5bc8528.jpg)' }}>
                     <div className="hero-overlay bg-opacity-60"></div>
                     <div className="hero-content text-center text-neutral-content">
                     </div>
                 </div>
-                <div className="hero w-full h-[640px]" style={{ backgroundImage: 'url(https://i.ibb.co/F89mQf0/banner4.jpg)' }}>
+                <div className="hero w-full h-[640px]" style={{ backgroundImage: 'url(https://res.cloudinary.com/wiooqx7y/image/upload/v1794413172/zen-zephyr/site-assets/828d7bce98b36b97bf20.jpg)' }}>
                     <div className="hero-overlay bg-opacity-60"></div>
                     <div className="hero-content text-center text-neutral-content">
                     </div>

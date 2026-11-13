@@ -22,7 +22,7 @@ const SocialSignIn = () => {
 
             }
             axiosPublic.post('/users',userInfo)
-            .then(res=>{
+            .then(()=>{
                 navigate('/');
             })
             Swal.fire({
@@ -43,7 +43,7 @@ const SocialSignIn = () => {
                 }
             });
             navigate('/');
-        });
+        }).catch(() => Swal.fire({ icon: 'error', title: 'Unable to sign in with Google', text: 'Try again or use email and password.' }));
 
     }
 

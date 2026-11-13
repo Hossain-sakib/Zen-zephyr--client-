@@ -14,7 +14,7 @@ const Sidebar = () => {
     return (
         <div className="menu w-64 min-h-screen bg-cyan-400">
             <div className="flex items-center justify-center py-8 overflow-hidden transition-all hover:scale-105  hover:shadow-2xl">
-                <Link to='/'><img className=" btn btn-ghost" src="https://i.ibb.co/BLHYRbG/zz1.png" alt="" /></Link>
+                <Link to='/'><img className=" btn btn-ghost" src="https://res.cloudinary.com/wiooqx7y/image/upload/v1794413172/zen-zephyr/site-assets/9bb34406783db3a00b90.png" alt="" /></Link>
             </div>
 
             {

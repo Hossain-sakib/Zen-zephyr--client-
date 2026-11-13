@@ -1,5 +1,5 @@
 import { AiOutlineArrowDown, AiOutlineArrowUp, AiOutlineComment, AiOutlineShareAlt, AiOutlineTag } from "react-icons/ai";
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useNavigate } from "react-router-dom";
 import useAuth from "../../Hooks/useAuth.jsx"
 import useAxiosPublic from "../../Hooks/useAxiosPublic.jsx";
 import { useState } from "react";
@@ -9,6 +9,7 @@ import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../Hooks/useAxiosSecure.jsx";
 import { Helmet } from "react-helmet-async";
 const PostPage = () => {
+    const navigate = useNavigate();
     const [postData, setPostData] = useState(useLoaderData());
     const [showComments, setShowComments] = useState(false);
     const { user } = useAuth();
@@ -40,28 +41,26 @@ const PostPage = () => {
 
 
     const handleUpVote = async () => {
+        if (!user) return navigate('/signin');
         const currentPost = await axiosPublic.get(`/post/${postData._id}`);
         const currentUpVotes = currentPost.data.upVotes || [];
         const currentDownVotes = currentPost.data.downVotes || [];
 
         if (currentUpVotes.includes(user?.email)) {
-            const updatedPost = await axiosSecure.patch(`/post/${postData._id}`, {
+            await axiosSecure.patch(`/post/${postData._id}`, {
                 $pull: { upVotes: user?.email },
             });
-            console.log('Removed UpVote:', updatedPost.data);
         }
         else if (!currentUpVotes.includes(user?.email) && currentDownVotes.includes(user?.email)) {
-            const updatedPost = await axiosSecure.patch(`/post/${postData._id}`, {
+            await axiosSecure.patch(`/post/${postData._id}`, {
                 $pull: { downVotes: user?.email },
                 $push: { upVotes: user?.email },
             });
-            console.log('Removed downVote and added upVote:', updatedPost.data);
         }
         else if (!currentUpVotes.includes(user?.email) && !currentDownVotes.includes(user?.email)) {
-            const updatedPost = await axiosSecure.patch(`/post/${postData._id}`, {
+            await axiosSecure.patch(`/post/${postData._id}`, {
                 $push: { upVotes: user?.email },
             });
-            console.log('added upVote:', updatedPost.data);
         }
         const updatedPostData = await axiosPublic.get(`/post/${postData._id}`);
         setPostData(updatedPostData.data);
@@ -71,23 +70,24 @@ const PostPage = () => {
 
 
     const handleDownVote = async () => {
+        if (!user) return navigate('/signin');
         const currentPost = await axiosPublic.get(`/post/${postData._id}`);
         const currentUpVotes = currentPost.data.upVotes || [];
         const currentDownVotes = currentPost.data.downVotes || [];
 
         if (currentDownVotes.includes(user?.email)) {
-            const updatedPost = await axiosSecure.patch(`/post/${postData._id}`, {
+            await axiosSecure.patch(`/post/${postData._id}`, {
                 $pull: { downVotes: user?.email },
             });
         }
         else if (!currentDownVotes.includes(user?.email) && currentUpVotes.includes(user?.email)) {
-            const updatedPost = await axiosSecure.patch(`/post/${postData._id}`, {
+            await axiosSecure.patch(`/post/${postData._id}`, {
                 $pull: { upVotes: user?.email },
                 $push: { downVotes: user?.email },
             });
         }
         else if (!currentDownVotes.includes(user?.email) && !currentUpVotes.includes(user?.email)) {
-            const updatedPost = await axiosSecure.patch(`/post/${postData._id}`, {
+            await axiosSecure.patch(`/post/${postData._id}`, {
                 $push: { downVotes: user?.email },
             });
         }
@@ -133,7 +133,7 @@ const PostPage = () => {
                         <div className="w-1/4 flex items-center border border-cyan-400 justify-center overflow-hidden transition-all hover:text-cyan-600 hover:scale-105  hover:shadow-2xl rounded-lg">
                             <button
                                 onClick={handleUpVote}
-                                className={`flex items-center gap-1 text-xs font-bold ${postData.data?.upVotes.includes(user.email)
+                                className={`flex items-center gap-1 text-xs font-bold ${postData.upVotes?.includes(user?.email)
                                     ? 'text-green-600 p-1 bg-green-100 border-green-400'
                                     : 'text-cyan-600 p-1 border-cyan-400'
                                     }`}
@@ -148,7 +148,7 @@ const PostPage = () => {
                         <div className="w-1/4 flex items-center border border-cyan-400 justify-center overflow-hidden transition-all hover:text-cyan-600 hover:scale-105  hover:shadow-2xl rounded-lg">
                             <button
                                 onClick={handleDownVote}
-                                className={`flex items-center gap-1 text-xs font-bold  ${postData.data?.downVotes.includes(user.email)
+                                className={`flex items-center gap-1 text-xs font-bold  ${postData.downVotes?.includes(user?.email)
                                     ? 'text-red-600 p-1 bg-red-100 border-red-400'
                                     : 'text-cyan-600 p-1 border-cyan-400'
                                     }`}
@@ -173,7 +173,7 @@ const PostPage = () => {
                             showComments &&
                             <div className="mt-2">
                                 <Comments postId={postData._id}></Comments>
-                                <CommentBox post={postData}></CommentBox>
+                                {user ? <CommentBox post={postData}></CommentBox> : <p>Sign in to comment.</p>}
                             </div>
                         }
 

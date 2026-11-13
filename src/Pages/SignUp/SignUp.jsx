@@ -6,11 +6,11 @@ import Swal from "sweetalert2";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
 import { Helmet } from "react-helmet-async";
 
-const imagebb_key = import.meta.env.VITE_IMAGEBB_KEY;
-const imgbb_api = `https://api.imgbb.com/1/upload?key=${imagebb_key}`
+import { uploadProfileImage } from "../../utils/cloudinary";
 
 
 const SignUp = () => {
+    const [submitting, setSubmitting] = useState(false);
     const [signUpError, setSignUpError] = useState('');
     const axiosPublic = useAxiosPublic();
 
@@ -20,6 +20,7 @@ const SignUp = () => {
 
     const handleSignUp = async (e) => {
         e.preventDefault();
+        if (submitting) return;
 
         const form = e.target;
         const name = form.name.value;
@@ -27,42 +28,35 @@ const SignUp = () => {
         const password = form.password.value;
         const imageFile = form.photo.files[0];
 
-       
+        if (password.length < 6) {
+            setSignUpError('Password should be at least 6 characters.');
+            return;
+        } else if (!/[A-Z]/.test(password)) {
+            setSignUpError('Required at least one uppercase character.');
+            return;
+        } else if (!/[a-z]/.test(password)) {
+            setSignUpError('Required at least one lowercase character.');
+            return;
+        } else if (!/[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]+/.test(password)) {
+            setSignUpError('Required at least one special character.');
+            return;
+        } else if (!/[0-9]/.test(password)) {
+            setSignUpError('Required at least one numerical character.');
+            return;
+        }
 
-            const formData = new FormData();
-            formData.append('image', imageFile);
 
-            const imgRes = await axiosPublic.post(imgbb_api, formData, {
-                headers: {
-                    "Content-Type": 'multipart/form-data'
-                }
-            });
-
-
-            if (password.length < 6) {
-                setSignUpError('Password should be at least 6 characters.');
-                return;
-            } else if (!/[A-Z]/.test(password)) {
-                setSignUpError('Required at least one uppercase character.');
-                return;
-            } else if (!/[a-z]/.test(password)) {
-                setSignUpError('Required at least one lowercase character.');
-                return;
-            } else if (!/[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/.test(password)) {
-                setSignUpError('Required at least one special character.');
-                return;
-            } else if (!/[0-9]/.test(password)) {
-                setSignUpError('Required at least one numerical character.');
-                return;
-            }
-
-     
-            setSignUpError('');
+        if (!imageFile || !['image/jpeg', 'image/png', 'image/webp'].includes(imageFile.type) || imageFile.size > 5 * 1024 * 1024) {
+            setSignUpError('Choose a JPG, PNG or WebP image up to 5 MB.');
+            return;
+        }
+        setSignUpError('');
+        setSubmitting(true);
+        try {
 
 
             const result = await signUpUser(email, password);
-            const user = result.user;
-            const photo = imgRes.data.data.display_url
+            const photo = await uploadProfileImage(imageFile, result.user);
             await updateUser(name,photo);
 
             const badge = 'bronze';
@@ -71,7 +65,8 @@ const SignUp = () => {
                 name: name,
                 userImage: photo,
                 badge: badge
-            };
+
+    };
 
 
             const saveResult = await axiosPublic.post('/users', userInfo);
@@ -95,7 +90,11 @@ const SignUp = () => {
                 });
                 navigate('/');
             }
-       
+            } catch {
+                setSignUpError('Sign-up could not finish. If your account was created, sign in instead.');
+            } finally {
+                setSubmitting(false);
+            }
     };
     return (
         <div className="hero min-h-screen mb-24">
@@ -104,7 +103,7 @@ const SignUp = () => {
             </Helmet>
             <div className="hero-content flex-col lg:flex-row-reverse">
                 <div className="h-80 w-80">
-                    <img src="https://i.ibb.co/X802tCb/SignUp.jpg" alt="" />
+                    <img src="https://res.cloudinary.com/wiooqx7y/image/upload/v1794413176/zen-zephyr/site-assets/413eeb043a766a6f6e7f.jpg" alt="" />
                 </div>
                 <div className="card shrink-0 w-full max-w-sm shadow-2xl bg-base-100 rounded-lg border-2 border-cyan-600">
                     <form onSubmit={handleSignUp} className="card-body bg-cyan-50">
@@ -118,7 +117,7 @@ const SignUp = () => {
                             <label className="label">
                                 <span className="label-text font-semibold text-cyan-500">Photo</span>
                             </label>
-                            <input type="file" placeholder="photo" name="photo" className="file-input border-cyan-400 input-bordered" required />
+                            <input type="file" accept="image/jpeg,image/png,image/webp" placeholder="photo" name="photo" className="file-input border-cyan-400 input-bordered" required />
                         </div>
 
                         <div className="form-control">
@@ -135,14 +134,14 @@ const SignUp = () => {
                             <input type="password" placeholder="password" name="password" className="input border-cyan-400 input-bordered" required />
                         </div>
                         <div className="form-control mt-6">
-                            <button type="submit" className="btn bg-cyan-300 hover:bg-cyan-400 font-bold overflow-hidden transition-all hover:scale-105  hover:shadow-2xl">Sign Up</button>
+                            <button disabled={submitting} type="submit" className="btn bg-cyan-300 hover:bg-cyan-400 font-bold overflow-hidden transition-all hover:scale-105  hover:shadow-2xl">{submitting ? 'Creating account…' : 'Sign Up'}</button>
                         </div>
                     </form>
                     {
                         signUpError && <p className="text-xs text-center text-red-600 p-4">{signUpError}</p>
                     }
                     <SocialSignIn></SocialSignIn>
-                    <p className='text-center text-cyan-500 font-semibold py-4'><small>Already have an account? Please </small><Link to='/register' className='hover:underline hover:font-bold'>Sign In.</Link></p>
+                    <p className='text-center text-cyan-500 font-semibold py-4'><small>Already have an account? Please </small><Link to='/signin' className='hover:underline hover:font-bold'>Sign In.</Link></p>
                 </div>
             </div>
         </div>
