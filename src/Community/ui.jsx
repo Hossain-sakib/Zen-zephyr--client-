@@ -33,4 +33,3 @@ export function Skeleton({ cards = 2 }) {
   return <div aria-label="Loading conversations" className="cz-skeletons">{Array.from({ length: cards }, (_, i) => <div className="cz-card cz-skeleton" key={i}><span /><div /><div /><div /></div>)}</div>;
 }
 Skeleton.propTypes = { cards: PropTypes.number };
-

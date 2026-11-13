@@ -54,3 +54,23 @@ Verified against the deployed site in Chromium: the actual portfolio origin
 renders the app; example.com, same-origin embedding, and a portfolio frame inside
 an untrusted outer origin are blocked. `npm test` covers the configuration and
 storage-denial regression. The new favicon and touch icon are served by Cloudinary.
+
+
+## Community expansion
+
+The deployed system includes public/private groups with membership approval,
+public pages with owner updates, direct messages with photos and read receipts,
+24-hour stories, events with RSVPs, marketplace listings and account blocking.
+Messaging refreshes every three seconds while a conversation is open; inboxes
+refresh every ten seconds. These are authenticated conversations, without
+end-to-end encryption. Marketplace payments and video calls are not implemented.
+
+Twelve fictional demo profiles, ten posts and thirty comments are clearly labeled.
+Demo accounts cannot receive connection requests or messages. Photos are served
+from Cloudinary; the demo helper is idempotent and is not exposed as a deployed
+HTTP endpoint. Stories are hidden immediately at expiry and MongoDB TTL indexes
+remove their records later; Cloudinary assets are not automatically erased.
+
+The frontend permits framing only by `https://sakib-studio.netlify.app` through
+its response CSP. Keep `public/_headers` in the published frontend build and do
+not add a conflicting `X-Frame-Options` header.
